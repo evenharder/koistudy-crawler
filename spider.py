@@ -62,8 +62,7 @@ class Spider:
 					ret['message'] = 'TooManyRedirects raised. Please try again later.'
 				else:
 					ret['status']=True
-					soup2 = BeautifulSoup(requests.get('http://koistudy.net',
-						cookies=self.cookies, timeout=1).text, 'html.parser')
+					soup2 = BeautifulSoup(r2.text, 'html.parser')
 					account = soup2.find('strong').string
 					ret['message']=account+'님, 환영합니다'
 			else:
@@ -82,11 +81,11 @@ class Spider:
 			r = requests.get('http://koistudy.net/?mid=view_prob&id=' +
 				self.login_data['user_id'],	timeout=1)
 		except requests.exceptions.ConnectionError:
-			ls.append('ConnectionError raised.')
+			ls.append('ConnectionError raised. Please check your network status.')
 		except requests.exceptions.Timeout:
-			ls.append('Timeout raised.')
+			ls.append('Timeout raised. Please check your network status.')
 		except requests.exceptions.TooManyRedirects:
-			ls.append('TooManyRedirects raised.')
+			ls.append('TooManyRedirects raised. Please try again later.')
 		else:
 			soup = BeautifulSoup(r.text, 'lxml')
 			#soup.body.find(id='xe').find(id='container').find(id='body').find(id='content').find(id='gs13068').find(id='solved').p.font.b.find_all('a')
