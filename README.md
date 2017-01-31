@@ -1,5 +1,6 @@
 # KOISTUDY Crawler
 A program which crawls your accepted KOISTUDY submissions.
+Run `__main__.py` to start.
 
 Prerequisites
 --------
