@@ -76,4 +76,9 @@ Options
 * Hexadecimal
 * Name files and directories in hexadecimal. (e.g. 0031 -> 001F)
 
+Libraries
+* requests : http://docs.python-requests.org/
+* BeautifulSoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+* lxml : http://lxml.de/
+
 Happy coding!'''
