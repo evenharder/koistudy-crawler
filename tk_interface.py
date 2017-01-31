@@ -113,12 +113,17 @@ class GUI:
 
 		self.scrolledtext=ScrolledText(self.frame_progress)
 		self.scrolledtext.bind('<Key>', lambda e: 'break')
-		self.scrolledtext.pack()
+		self.scrolledtext.grid(row=1, column=1, columnspan=2, sticky=(N,E,W,S))
 
 		self.progressbar_crawl=Progressbar(self.frame_progress,
 			orient='horizontal', length=350, value=0,
 			maximum=1000, mode='determinate')
-		self.progressbar_crawl.pack()
+		self.progressbar_crawl.grid(row=2, column=1, sticky=(N,S))
+
+		self.variable_scroll_down=IntVar()
+		self.button_scroll_down=Checkbutton(self.frame_progress,
+			text='Enable auto-scrolling', variable=self.variable_scroll_down)
+		self.button_scroll_down.grid(row=2, column=2, sticky=(N,S))
 
 		self.config_comment()
 		self.config_button(TK_LOGOUT)
@@ -234,14 +239,14 @@ class GUI:
 			self.config_button(TK_LOGIN)
 
 	def text_print(self, message, **kwargs):
-		scroll_end = True
+		scroll_end = self.variable_scroll_down.get()
 
 		for a in kwargs:
 			if a.lower() == 'scroll' and kwargs[a] is False:
-				scroll_end = False
+				scroll_end = 1
 
 		self.scrolledtext.insert(END, message + '\n')
-		if scroll_end:
+		if scroll_end == 1:
 			self.scrolledtext.see(END)
 
 	def text_clear(self):
@@ -260,10 +265,12 @@ class GUI:
 
 		if self.path:
 			self.config_button(TK_CRAWL_READY)
+			message = 'Directory : '+self.path
 		else:
 			self.config_button(TK_LOGIN)
+			message = 'Directory not selected.'
 
-		self.text_print('Directory : '+self.path)
+		self.text_print(message)
 
 	def koi_crawl(self): #select directory
 		if not os.path.isdir(self.path):
