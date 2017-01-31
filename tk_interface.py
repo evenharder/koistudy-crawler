@@ -121,6 +121,7 @@ class GUI:
 		self.progressbar_crawl.grid(row=2, column=1, sticky=(N,S))
 
 		self.variable_scroll_down=IntVar()
+		self.variable_scroll_down.set(1)
 		self.button_scroll_down=Checkbutton(self.frame_progress,
 			text='Enable auto-scrolling', variable=self.variable_scroll_down)
 		self.button_scroll_down.grid(row=2, column=2, sticky=(N,S))
