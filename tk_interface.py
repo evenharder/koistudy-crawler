@@ -366,5 +366,3 @@ class GUI:
 		except:
 			self.root.after(500, self.check_queue)
 
-GUI()
-
