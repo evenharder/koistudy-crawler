@@ -47,7 +47,7 @@ class Spider:
 		except requests.exceptions.TooManyRedirects:
 			ret['message'] = 'TooManyRedirects raised. Please try again later.'
 		else:
-			soup = BeautifulSoup(r.text, 'lxml')
+			soup = BeautifulSoup(r.text, 'html5lib')
 			res = soup.find('h1').string
 			if res == 'success':
 				self.cookies = dict(PHPSESSID=r.cookies['PHPSESSID'])
@@ -62,7 +62,7 @@ class Spider:
 					ret['message'] = 'TooManyRedirects raised. Please try again later.'
 				else:
 					ret['status']=True
-					soup2 = BeautifulSoup(r2.text, 'html.parser')
+					soup2 = BeautifulSoup(r2.text, 'html5lib')
 					account = soup2.find('strong').string
 					ret['message']=account+'님, 환영합니다'
 			else:
@@ -111,7 +111,7 @@ class Spider:
 		except requests.exceptions.TooManyRedirects:
 			message = 'TooManyRedirects raised.'
 		else:
-			soup = BeautifulSoup(r.text, 'lxml')
+			soup = BeautifulSoup(r.text, 'html5lib')
 			resc = soup.body.find(id='xe').div.find(id='body').div.find('center')
 
 			if resc.string is not None:
@@ -133,7 +133,7 @@ class Spider:
 					message = 'TooManyRedirects raised.'
 				else:
 					ret = CRAWL_SUCCESS
-					soup2 = BeautifulSoup(r2.text, 'lxml')
+					soup2 = BeautifulSoup(r2.text, 'html5lib')
 					self.crawl_data['code'] = soup2.body.find(id='xe')\
 					.div.find(id='body').find(id='content').pre.string
 
