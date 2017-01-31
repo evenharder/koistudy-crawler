@@ -1,5 +1,5 @@
 import requests
-import lxml
+import html5lib
 from bs4 import BeautifulSoup
 import sys
 import os
@@ -87,7 +87,7 @@ class Spider:
 		except requests.exceptions.TooManyRedirects:
 			ls.append('TooManyRedirects raised. Please try again later.')
 		else:
-			soup = BeautifulSoup(r.text, 'lxml')
+			soup = BeautifulSoup(r.text, 'html5lib')
 			#soup.body.find(id='xe').find(id='container').find(id='body').find(id='content').find(id='gs13068').find(id='solved').p.font.b.find_all('a')
 			res = soup.body.div.div.find(id='body').div.div.find(id='solved').p.font.b.find_all('a')
 			ls = [int(a.string, 16) for a in res]
