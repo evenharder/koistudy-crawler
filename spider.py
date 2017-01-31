@@ -195,7 +195,6 @@ class Spider:
 			os.makedirs(prob_path, exist_ok=True)
 
 		if os.path.isdir(prob_path):
-			lines = self.crawl_data['code'].split('\n')
 			f = io.open(prob_path + '/' + prob_num_str + '.cpp', 'w',
 				encoding='utf8')
 
@@ -206,8 +205,7 @@ class Spider:
 					f.write(comment)
 					f.write('\n')
 
-			for line in lines:
-				f.write(line)
+			f.write(self.crawl_data['code'])
 			f.close()
 		else:
 			ret = WRITE_FAIL
