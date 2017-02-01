@@ -132,10 +132,16 @@ class Spider:
 				except requests.exceptions.TooManyRedirects:
 					message = 'TooManyRedirects raised.'
 				else:
-					ret = CRAWL_SUCCESS
 					soup2 = BeautifulSoup(r2.text, 'html5lib')
-					self.crawl_data['code'] = soup2.body.find(id='xe')\
-					.div.find(id='body').find(id='content').pre.string
+					try:
+						self.crawl_data['code'] = soup2.body.find(id='xe')\
+						.div.find(id='body').find(id='content').pre.string
+					except AttributeError:
+						message = 'Unable to crawl. Probably a C++11 bug in KOISTUDY.'
+						ret = CRAWL_PROBLEM_ERROR
+					else:
+						ret = CRAWL_SUCCESS
+
 
 		return [ret, message]
 
