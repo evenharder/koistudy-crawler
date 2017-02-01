@@ -20,7 +20,7 @@ PROB_LIST_NETWORK_ERROR = -1
 
 NETWORK_RECONNECT_TIME = 5
 
-HELP_MESSAGE = '''KOISTUDY Crawler by gs14080 ("Programmer") v.1.0.1
+HELP_MESSAGE = '''KOISTUDY Crawler by gs14080 ("Programmer") v.1.0.2
 
 KOISTUDY Crawler ("Crawler") crawls your accepted KOISTUDY submissions.
 
@@ -32,7 +32,7 @@ DISCLAIMER
   the Programmer is ineligible for the bug and its effect,
   as written in the License file.
 * The Crawler does not collect private data such as KOISTUDY password.
-* The Programmer apologize for the abundant usage of English instead of Korean.
+* The Programmer apologizes for the abundant usage of English instead of Korean.
 * For the source code, check out this GitHub repo:
   https://github.com/evenharder/koistudy-crawler
 
@@ -77,8 +77,8 @@ Options
 * Name files and directories in hexadecimal. (e.g. 0031 -> 001F)
 
 Libraries
-* requests : http://docs.python-requests.org/
-* BeautifulSoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
-* lxml : http://lxml.de/
+* requests : http://python-requests.org
+* BeautifulSoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/
+* html5lib : https://github.com/html5lib/html5lib-python
 
 Happy coding!'''
