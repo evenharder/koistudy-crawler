@@ -121,27 +121,26 @@ class Spider:
 				res = resc.find_all('a')[-1]['href']
 				self.crawl_data['prob_name'] = resc.find_all('font')[2]\
 				.contents[0]
-				self.crawl_data['prob_url'] = 'http://koistudy.net'+res
-				try:
-					r2 = requests.get(self.crawl_data['prob_url'],
-						cookies=self.cookies, timeout=1)
-				except requests.exceptions.ConnectionError:
-					message = 'ConnectionError raised.'
-				except requests.exceptions.Timeout:
-					message = 'Timeout raised.'
-				except requests.exceptions.TooManyRedirects:
-					message = 'TooManyRedirects raised.'
-				else:
-					soup2 = BeautifulSoup(r2.text, 'html5lib')
+
+				if res[:14] == '/?mid=src_page':
+					self.crawl_data['prob_url'] = 'http://koistudy.net'+res
 					try:
+						r2 = requests.get(self.crawl_data['prob_url'],
+							cookies=self.cookies, timeout=1)
+					except requests.exceptions.ConnectionError:
+						message = 'ConnectionError raised.'
+					except requests.exceptions.Timeout:
+						message = 'Timeout raised.'
+					except requests.exceptions.TooManyRedirects:
+						message = 'TooManyRedirects raised.'
+					else:
+						soup2 = BeautifulSoup(r2.text, 'html5lib')
 						self.crawl_data['code'] = soup2.body.find(id='xe')\
 						.div.find(id='body').find(id='content').pre.string
-					except AttributeError:
-						message = 'Unable to crawl. Probably a C++11 bug in KOISTUDY.'
-						ret = CRAWL_PROBLEM_ERROR
-					else:
 						ret = CRAWL_SUCCESS
-
+				else: #e.g. /?mid=view_prob
+					ret = CRAWL_PROBLEM_ERROR
+					message = 'Unable to crawl. Probably a C++11 bug in KOISTUDY.'
 
 		return [ret, message]
 
