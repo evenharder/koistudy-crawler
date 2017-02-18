@@ -290,7 +290,6 @@ class GUI:
             self.text_print(self.prob_list[1])
 
         else:
-            os.makedirs(self.entry_id.get(), exist_ok=True)
             self.config_button(TK_CRAWLING)
             self.spider.crawl_init(self.create_write_data(), self.path)
             self.progressbar_crawl['maximum']=len(self.prob_list)
