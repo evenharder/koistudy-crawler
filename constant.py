@@ -20,7 +20,7 @@ PROB_LIST_NETWORK_ERROR = -1
 
 NETWORK_RECONNECT_TIME = 5
 
-HELP_MESSAGE = '''KOISTUDY Crawler by gs14080 ("Programmer") v.1.0.3
+HELP_MESSAGE = '''KOISTUDY Crawler by gs14080 ("Programmer") v.1.0.4
 
 KOISTUDY Crawler ("Crawler") crawls your accepted KOISTUDY submissions.
 
